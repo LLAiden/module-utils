@@ -1,1 +1,13 @@
-# module-utils
+# 依赖方式
+```groovy
+
+	allprojects {
+		repositories {
+			maven { url 'https://www.jitpack.io' }
+		}
+	}
+
+    dependencies {
+        implementation 'com.github.LLAiden:module-module-utils:Tag'
+    }
+```
