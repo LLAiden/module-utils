@@ -3,6 +3,7 @@ package com.common.utils
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Resources
+import android.view.View
 import com.common.utils.container.ApplicationContainer
 
 object ScreenUtil {
@@ -41,4 +42,6 @@ object ScreenUtil {
         val fontScale: Float = Resources.getSystem().displayMetrics.scaledDensity
         return (spValue * fontScale + 0.5f).toInt()
     }
+
+    fun isRTL() = Resources.getSystem().configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
 }
