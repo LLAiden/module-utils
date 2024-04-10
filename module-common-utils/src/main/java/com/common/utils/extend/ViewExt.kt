@@ -47,6 +47,14 @@ fun View.toRoundRect(dp: Int) {
     }
 }
 
+fun View.toOval() {
+    clipToOutline = true
+    outlineProvider = object : ViewOutlineProvider() {
+        override fun getOutline(view: View, outline: Outline?) {
+            outline?.setOval(0, 0, view.measuredWidth, view.measuredHeight)
+        }
+    }
+}
 
 fun View.getLifecycleScope(): LifecycleCoroutineScope? {
     return context.getLifecycleScope()
@@ -73,6 +81,23 @@ fun View.resetSize(wid: Int? = null, hei: Int? = null) {
     }
 }
 
+fun TextView.setIcon(endResId: Int = 0, size: Int, gravity: Int) {
+    val drawable = ContextCompat.getDrawable(context, endResId)?.apply {
+            setBounds(0, 0, size.dp, size.dp)
+        }
+    if (drawable != null) {
+        setCompoundDrawablesRelative(
+            if (gravity == Gravity.START) drawable else null,
+            if (gravity == Gravity.TOP) drawable else null,
+            if (gravity == Gravity.END) drawable else null,
+            if (gravity == Gravity.BOTTOM) drawable else null,
+        )
+    } else {
+        setCompoundDrawablesRelative(null, null, null, null)
+    }
+}
+
+
 fun View.setMargin(left: Int? = null, top: Int? = null, right: Int? = null, bottom: Int? = null) {
     (layoutParams as? MarginLayoutParams)?.apply {
         if (left.isNotNull()) {
@@ -89,3 +114,17 @@ fun View.setMargin(left: Int? = null, top: Int? = null, right: Int? = null, bott
         }
     }
 }
+
+fun TextPaint.getWarpText(str: String, maxWidth: Int): String {
+    val measureTextWidth = measureText(str)
+    if (measureTextWidth > maxWidth) {
+        try {
+            val tmp = str.substring(0, str.length - 2)
+            return getWarpText("$tmp…", maxWidth)
+        } catch (ex: Exception) {
+        }
+    }
+    return str
+}
+
+
