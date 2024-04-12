@@ -5,12 +5,12 @@ import android.os.Looper
 import android.widget.Toast
 import com.common.utils.ToastUtil
 
-object ApplicationContainer {
+object AppContainer {
 
     private lateinit var mApplication: Application
 
     fun initApp(app: Application) {
-        if (isMainThread()) {
+        if (isMainThread) {
             mApplication = app
             ToastUtil.checkToastInstance(mApplication, Toast.LENGTH_SHORT)
         } else {
@@ -18,11 +18,9 @@ object ApplicationContainer {
         }
     }
 
-    fun getApp(): Application {
-        return mApplication
-    }
+    val getApp: Application
+        get() = mApplication
 
-    fun isMainThread(): Boolean {
-        return Looper.getMainLooper() == Looper.myLooper()
-    }
+    val isMainThread: Boolean
+        get() = Looper.getMainLooper() == Looper.myLooper()
 }

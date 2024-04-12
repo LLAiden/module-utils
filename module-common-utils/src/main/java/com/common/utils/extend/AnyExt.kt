@@ -14,6 +14,5 @@ fun Any.createCoroutineScope(context: CoroutineContext = Dispatchers.Main + Job(
     return CoroutineScope(context)
 }
 
-fun Any?.isNotNull(): Boolean {
-    return this != null
-}
+val Any?.isNotNull: Boolean
+    get() = this != null

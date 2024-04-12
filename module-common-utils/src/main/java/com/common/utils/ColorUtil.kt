@@ -27,12 +27,13 @@ object ColorUtil {
         return high or (Math.random() * 0x1000000).toInt()
     }
 
-    fun getColor(context: Context, @ColorRes res: Int): Int {
-        return ContextCompat.getColor(context, res)
+
+    fun Context.color(@ColorRes res: Int): Int {
+        return ContextCompat.getColor(this, res)
     }
 
-    fun getSafeColor(color: String, defaultColor: Int = Color.TRANSPARENT): Int {
-        kotlin.runCatching { Color.parseColor(color) }.onSuccess {
+    fun String.safeColor(defaultColor: Int = Color.TRANSPARENT): Int {
+        kotlin.runCatching { Color.parseColor(this) }.onSuccess {
             return it
         }
         return defaultColor

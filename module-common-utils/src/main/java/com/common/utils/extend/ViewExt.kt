@@ -62,25 +62,22 @@ fun View.oval() {
     }
 }
 
-fun View.lifecycleScope(): LifecycleCoroutineScope? {
-    return context.getLifecycleScope()
-}
+val View.lifecycleScope: LifecycleCoroutineScope?
+    get() = context.lifecycleScope
 
-fun View.lifecycleOwner(): LifecycleOwner? {
-    return context.lifecycleOwner()
-}
+val View.lifecycleOwner: LifecycleOwner?
+    get() = context.lifecycleOwner
 
 
-fun View.lifecycle(): Lifecycle? {
-    return context.lifecycleOwner()?.lifecycle
-}
+val View.lifecycle: Lifecycle?
+    get() = context.lifecycleOwner?.lifecycle
 
 fun View.size(wid: Int? = null, hei: Int? = null) {
     layoutParams.apply {
-        if (wid.isNotNull()) {
+        if (wid.isNotNull) {
             width = wid!!
         }
-        if (hei.isNotNull()) {
+        if (hei.isNotNull) {
             height = hei!!
         }
         layoutParams = this
@@ -106,16 +103,16 @@ fun TextView.icon(endResId: Int = 0, size: Int, gravity: Int) {
 
 fun View.margin(left: Int? = null, top: Int? = null, right: Int? = null, bottom: Int? = null) {
     (layoutParams as? MarginLayoutParams)?.apply {
-        if (left.isNotNull()) {
+        if (left.isNotNull) {
             leftMargin = left!!
         }
-        if (top.isNotNull()) {
+        if (top.isNotNull) {
             topMargin = top!!
         }
-        if (right.isNotNull()) {
+        if (right.isNotNull) {
             rightMargin = right!!
         }
-        if (bottom.isNotNull()) {
+        if (bottom.isNotNull) {
             bottomMargin = bottom!!
         }
     }

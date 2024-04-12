@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Resources
 import android.view.View
-import com.common.utils.container.ApplicationContainer
+import com.common.utils.container.AppContainer
 
 object ScreenUtil {
     fun getScreenWidth(context: Context): Int {
@@ -32,7 +32,7 @@ object ScreenUtil {
 
     @SuppressLint("InternalInsetResource", "DiscouragedApi")
     fun getStatusBarHeight(): Int {
-        val application = ApplicationContainer.getApp()
+        val application = AppContainer.getApp
         val resourceId: Int = application.resources
             .getIdentifier("status_bar_height", "dimen", "android")
         return application.resources.getDimensionPixelSize(resourceId)
@@ -43,5 +43,6 @@ object ScreenUtil {
         return (spValue * fontScale + 0.5f).toInt()
     }
 
-    fun isRTL() = Resources.getSystem().configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
+    val isRTL:Boolean
+        get() = Resources.getSystem().configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
 }

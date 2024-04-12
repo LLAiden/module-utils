@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
-import com.common.utils.container.ApplicationContainer
+import com.common.utils.container.AppContainer
 
 object ToastUtil {
 
@@ -16,13 +16,13 @@ object ToastUtil {
 
     private val mLockAny = Any()
 
-    fun showShort(charSequence: CharSequence, context: Context? = ApplicationContainer.getApp()) {
+    fun showShort(charSequence: CharSequence, context: Context? = AppContainer.getApp) {
         context?.let {
             val applicationContext = context.applicationContext
             checkToastInstance(applicationContext, Toast.LENGTH_SHORT)
             mToast
         }?.apply {
-            if (ApplicationContainer.isMainThread()) {
+            if (AppContainer.isMainThread) {
                 mToast?.setText(charSequence)
                 show()
             } else {
@@ -35,13 +35,13 @@ object ToastUtil {
         }
     }
 
-    fun showLong(charSequence: CharSequence, context: Context? = ApplicationContainer.getApp()) {
+    fun showLong(charSequence: CharSequence, context: Context? = AppContainer.getApp) {
         context?.let {
             val applicationContext = context.applicationContext
             checkToastInstance(applicationContext, Toast.LENGTH_LONG)
             mToast
         }?.apply {
-            if (ApplicationContainer.isMainThread()) {
+            if (AppContainer.isMainThread) {
                 mToast?.setText(charSequence)
                 show()
             } else {

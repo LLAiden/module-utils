@@ -13,7 +13,7 @@ val Int.fdp get() = ScreenUtil.dp2px(this.toFloat()).toFloat()
 val Float.dp get() = ScreenUtil.dp2px(this)
 fun Int.alpha(@IntRange(from = 1, to = 100) value: Int) = ColorUtil.alphaColor(this, value)
 
-fun Int.rtl(size: Int, isRTL: Boolean = ScreenUtil.isRTL()): Int {
+fun Int.rtl(size: Int, isRTL: Boolean = ScreenUtil.isRTL): Int {
     return if (isRTL) {
         size - 1 - this
     } else this
@@ -23,13 +23,11 @@ fun Int.rtl(size: Int, isRTL: Boolean = ScreenUtil.isRTL()): Int {
  * 百分比
  */
 private val percentFormat: NumberFormat = NumberFormat.getPercentInstance()
-fun Double.percentage(): String {
-    return percentFormat.format(this)
-}
+val Double.percentage: String
+    get() = percentFormat.format(this)
 
-fun Float.percentage(): String {
-    return percentFormat.format(this)
-}
+val Float.percentage: String
+    get() = percentFormat.format(this)
 
 /**
  * 123456789
