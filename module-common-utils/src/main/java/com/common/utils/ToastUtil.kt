@@ -22,7 +22,7 @@ object ToastUtil {
             checkToastInstance(applicationContext, Toast.LENGTH_SHORT)
             mToast
         }?.apply {
-            if (isMainThread()) {
+            if (ApplicationContainer.isMainThread()) {
                 mToast?.setText(charSequence)
                 show()
             } else {
@@ -41,7 +41,7 @@ object ToastUtil {
             checkToastInstance(applicationContext, Toast.LENGTH_LONG)
             mToast
         }?.apply {
-            if (isMainThread()) {
+            if (ApplicationContainer.isMainThread()) {
                 mToast?.setText(charSequence)
                 show()
             } else {
@@ -54,7 +54,7 @@ object ToastUtil {
         }
     }
 
-    private fun checkToastInstance(context: Context, duration: Int) {
+    fun checkToastInstance(context: Context, duration: Int) {
         if (mToast == null) {
             synchronized(mLockAny) {
                 if (mToast == null) {
@@ -63,10 +63,6 @@ object ToastUtil {
             }
         }
         mToast?.duration = duration
-    }
-
-    private fun isMainThread(): Boolean {
-        return Looper.getMainLooper() == Looper.myLooper()
     }
 
     private fun checkHandlerInstance() {

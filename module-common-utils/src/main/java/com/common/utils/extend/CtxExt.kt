@@ -6,22 +6,22 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.*
 
-fun Context.getViewModelProvider(): ViewModelStoreOwner? {
+fun Context.VMProvider(): ViewModelStoreOwner? {
     return (this as? ViewModelStoreOwner)?.apply {
         ViewModelProvider(this)
     }
 }
 
-fun Context.getLifecycle(): Lifecycle? {
-    return getLifecycleOwner()?.lifecycle
+fun Context.lifecycle(): Lifecycle? {
+    return lifecycleOwner()?.lifecycle
 }
 
-fun Context.getLifecycleOwner(): LifecycleOwner? {
+fun Context.lifecycleOwner(): LifecycleOwner? {
     return (this as? LifecycleOwner)
 }
 
 fun Context.getLifecycleScope(): LifecycleCoroutineScope? {
-    return getLifecycleOwner()?.lifecycleScope
+    return lifecycleOwner()?.lifecycleScope
 }
 
 fun Context.goPage(kClass: Class<out Activity>, bundle: Bundle? = null) {

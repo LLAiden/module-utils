@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 
 object DrawableUtil {
 
-    fun getGradientDrawable(
+    fun getGDrawable(
         @ColorInt color: Int, radius: Float, graph: Int = GradientDrawable.RECTANGLE
     ): GradientDrawable {
         return GradientDrawable().apply {
@@ -19,17 +19,17 @@ object DrawableUtil {
         }
     }
 
-    fun getGradientDrawable(
+    fun getGDrawable(
         context: Context,
         @ColorRes color: Int,
         radius: Float,
         graph: Int = GradientDrawable.RECTANGLE
     ): GradientDrawable {
-        return getGradientDrawable(ContextCompat.getColor(context, color), radius, graph)
+        return getGDrawable(ContextCompat.getColor(context, color), radius, graph)
     }
 
 
-    fun getGradientDrawable(
+    fun getGDrawable(
         @ColorInt color: Int, @Size(4) radius: FloatArray, graph: Int = GradientDrawable.RECTANGLE
     ): GradientDrawable {
         return GradientDrawable().apply {
@@ -50,28 +50,27 @@ object DrawableUtil {
     }
 
 
-    fun getGradientDrawable(
+    fun getGDrawable(
         context: Context,
         @ColorRes color: Int,
         @Size(4) radius: FloatArray,
         graph: Int = GradientDrawable.RECTANGLE
     ): GradientDrawable {
-        return getGradientDrawable(ContextCompat.getColor(context, color), radius, graph)
+        return getGDrawable(ContextCompat.getColor(context, color), radius, graph)
     }
 
 
-    fun GradientDrawable.setStrokeDrawable(width: Int, color: Int) {
+    fun GradientDrawable.stroke(width: Int, color: Int) {
         setStroke(width, color)
     }
 
-    fun GradientDrawable.setGradientDrawable(
-        drawable: GradientDrawable,
-        colors: IntArray,
-        gradientType: Int = GradientDrawable.LINEAR_GRADIENT
+    fun GradientDrawable.gradient(
+        sColors: IntArray,
+        sGradientType: Int = GradientDrawable.LINEAR_GRADIENT
     ) {
-        drawable.apply {
-            drawable.gradientType = gradientType
-            drawable.colors = colors
+        this.apply {
+            gradientType = sGradientType
+            colors = sColors
         }
     }
 }
