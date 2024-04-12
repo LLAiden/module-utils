@@ -23,11 +23,8 @@ fun Int.rtl(size: Int, isRTL: Boolean = ScreenUtil.isRTL): Int {
  * 百分比
  */
 private val percentFormat: NumberFormat = NumberFormat.getPercentInstance()
-val Double.percentage: String
-    get() = percentFormat.format(this)
-
-val Float.percentage: String
-    get() = percentFormat.format(this)
+val Double.percentage get() = percentFormat.format(this)
+val Float.percentage get() = percentFormat.format(this)
 
 /**
  * 123456789

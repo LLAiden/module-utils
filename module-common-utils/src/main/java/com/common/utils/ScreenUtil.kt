@@ -43,6 +43,6 @@ object ScreenUtil {
         return (spValue * fontScale + 0.5f).toInt()
     }
 
-    val isRTL:Boolean
-        get() = Resources.getSystem().configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
+    val isRTL get() = Resources.getSystem().configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
+
 }

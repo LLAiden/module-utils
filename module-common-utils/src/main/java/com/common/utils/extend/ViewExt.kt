@@ -9,15 +9,12 @@ import android.view.ViewGroup.MarginLayoutParams
 import android.view.ViewOutlineProvider
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleCoroutineScope
-import androidx.lifecycle.LifecycleOwner
-import com.common.utils.ClickUtil
+import com.common.utils.ClickUtil.isDoubleClick
 
 fun View.click(onclick: (view: View) -> Unit) {
     addClickScale()
     setOnClickListener {
-        if (!ClickUtil.isDoubleClick(view = this)) {
+        if (!this.isDoubleClick()) {
             onclick.invoke(this)
         }
     }
@@ -53,24 +50,21 @@ fun View.roundRect(dp: Int) {
     }
 }
 
-fun View.oval() {
-    clipToOutline = true
-    outlineProvider = object : ViewOutlineProvider() {
-        override fun getOutline(view: View, outline: Outline?) {
-            outline?.setOval(0, 0, view.measuredWidth, view.measuredHeight)
+val View.oval
+    get() = run {
+        clipToOutline = true
+        outlineProvider = object : ViewOutlineProvider() {
+            override fun getOutline(view: View, outline: Outline?) {
+                outline?.setOval(0, 0, view.measuredWidth, view.measuredHeight)
+            }
         }
     }
-}
 
-val View.lifecycleScope: LifecycleCoroutineScope?
-    get() = context.lifecycleScope
+val View.lifecycleScope get() = context.lifecycleScope
 
-val View.lifecycleOwner: LifecycleOwner?
-    get() = context.lifecycleOwner
+val View.lifecycleOwner get() = context.lifecycleOwner
 
-
-val View.lifecycle: Lifecycle?
-    get() = context.lifecycleOwner?.lifecycle
+val View.lifecycle get() = context.lifecycleOwner?.lifecycle
 
 fun View.size(wid: Int? = null, hei: Int? = null) {
     layoutParams.apply {

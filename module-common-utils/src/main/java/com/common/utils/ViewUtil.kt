@@ -55,8 +55,8 @@ object ViewUtil {
         view.getDrawingRect(rect)
         rect.left = location[0]
         rect.top = location[1]
-        rect.right = rect.right + location[0]
-        rect.bottom = rect.bottom + location[1]
+        rect.right += location[0]
+        rect.bottom += location[1]
         val rawX = ev.rawX.toInt()
         val rawY = ev.rawY.toInt()
         return rect.contains(rawX, rawY)

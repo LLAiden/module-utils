@@ -18,9 +18,6 @@ object AppContainer {
         }
     }
 
-    val getApp: Application
-        get() = mApplication
-
-    val isMainThread: Boolean
-        get() = Looper.getMainLooper() == Looper.myLooper()
+    val getApp get() = mApplication
+    val isMainThread get() = Looper.getMainLooper() == Looper.myLooper()
 }
