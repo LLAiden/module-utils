@@ -60,11 +60,11 @@ val View.oval
         }
     }
 
-val View.lifecycleScope get() = context.lifecycleScope
+val View.mLifecycleScope get() = context.mLifecycleScope
 
-val View.lifecycleOwner get() = context.lifecycleOwner
+val View.mLifecycleOwner get() = context.mLifecycleOwner
 
-val View.lifecycle get() = context.lifecycleOwner?.lifecycle
+val View.mLifecycle get() = context.mLifecycleOwner?.lifecycle
 
 fun View.size(wid: Int? = null, hei: Int? = null) {
     layoutParams.apply {

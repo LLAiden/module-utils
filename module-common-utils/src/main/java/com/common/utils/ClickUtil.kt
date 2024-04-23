@@ -12,7 +12,6 @@ object ClickUtil {
         val currentTime = System.currentTimeMillis()
         val isDoubleClick = currentTime - lastClickTimestamp <= customIntervalMs
         if (!isDoubleClick) {
-            // Only update the tag if it's not a double click
             this.setTag(lastClickTimestampKey, currentTime)
         }
         return isDoubleClick

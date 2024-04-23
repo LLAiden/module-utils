@@ -5,22 +5,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.lifecycleScope
 
-val Context.VMProvider
-    get() =
-        (this as? ViewModelStoreOwner)?.apply {
-            ViewModelProvider(this)
-        }
-val Context.VMStore get() = VMProvider?.viewModelStore
+val Context.mLifecycle get() = mLifecycleOwner?.lifecycle
 
-val Context.lifecycle get() = lifecycleOwner?.lifecycle
+val Context.mLifecycleOwner get() = (this as? LifecycleOwner)
 
-val Context.lifecycleOwner get() = (this as? LifecycleOwner)
-
-val Context.lifecycleScope get() = lifecycleOwner?.lifecycleScope
+val Context.mLifecycleScope get() = mLifecycleOwner?.lifecycleScope
 
 fun Context.goPage(kClass: Class<out Activity>, bundle: Bundle? = null) {
     Intent(this, kClass).apply {
