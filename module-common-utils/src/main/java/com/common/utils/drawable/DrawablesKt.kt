@@ -8,8 +8,13 @@ fun radiusDrawable(radius: Int, color: Int) = shapeDrawable {
     solidColor = color
 }
 
-fun radiiDrawable(radius: FloatArray, color: Int) = shapeDrawable {
+fun radiusDrawable(radius: FloatArray, color: Int) = shapeDrawable {
     cornerRadii = radius
+    solidColor = color
+}
+
+fun radiusTopDrawable(radius: Float, color: Int) = shapeDrawable {
+    cornerRadii = floatArrayOf(radius, radius, radius, radius, 0f, 0f, 0f, 0f)
     solidColor = color
 }
 
@@ -20,7 +25,7 @@ fun gradientDrawable(radius: Int, sColor: Int, eColor: Int) = shapeDrawable {
     }
 }
 
-fun gradientDrawableOrientation(radius: Int, sColor: Int, eColor: Int) = shapeDrawable {
+fun gradientDrawableStart2End(radius: Int, sColor: Int, eColor: Int) = shapeDrawable {
     colors = intArrayOf(sColor, eColor)
     orientation = if (ScreenUtil.isRTL) {
         GradientDrawable.Orientation.RIGHT_LEFT
@@ -42,20 +47,20 @@ fun gradientDrawable(radius: FloatArray, sColor: Int, eColor: Int) = shapeDrawab
     cornerRadii = radius
 }
 
-fun strokeDrawable(radius: Int, bColor: Int, strokeWidth: Int, storkeColor: Int) = shapeDrawable {
+fun strokeDrawable(radius: Int, bColor: Int, strokeWidth: Int, strokeColor: Int) = shapeDrawable {
     cornerRadius = radius.toFloat()
     solidColor = bColor
 
     stroke {
         width = strokeWidth
-        color = storkeColor
+        color = strokeColor
     }
 }
 
 fun strokeGradientDrawable(
     radius: FloatArray,
     strokeWidth: Int,
-    storkeColor: Int,
+    strokeColor: Int,
     sColor: Int,
     eColor: Int
 ) = shapeDrawable {
@@ -68,7 +73,7 @@ fun strokeGradientDrawable(
     }
     stroke {
         width = strokeWidth
-        color = storkeColor
+        color = strokeColor
     }
 }
 
